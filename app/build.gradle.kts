@@ -23,16 +23,22 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "NETWORK_HOST", "\"rickandmortyapi.com/api\"")
+        }
+        debug {
+            buildConfigField("String", "NETWORK_HOST", "\"rickandmortyapi.com/api\"")
         }
     }
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
 dependencies {
     implementation(projects.theme)
+    implementation(projects.network)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
