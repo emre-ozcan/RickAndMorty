@@ -1,48 +1,25 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
     kotlin("kapt")
 }
 
 android {
-    namespace = "com.emreozcan.rickandmorty"
-
-
-    defaultConfig {
-        applicationId = "com.emreozcan.rickandmorty"
-        versionCode = 1
-        versionName = "1.0"
-
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-            buildConfigField("String", "NETWORK_HOST", "\"rickandmortyapi.com/api\"")
-        }
-        debug {
-            buildConfigField("String", "NETWORK_HOST", "\"rickandmortyapi.com/api\"")
-        }
-    }
+    namespace = "com.emreozcan.rickandmorty.home"
 
     buildFeatures {
         compose = true
-        buildConfig = true
     }
 }
 
 dependencies {
     implementation(projects.theme)
-    implementation(projects.network)
-    implementation(projects.features.home)
+    implementation(projects.features.home.domain)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.activity.compose)
 
     implementation(platform(libs.androidx.compose.bom))
@@ -56,10 +33,6 @@ dependencies {
 
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
-
-    implementation(libs.ktor.client.core)
-
-    implementation(libs.timber)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

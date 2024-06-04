@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.navigation.compose.rememberNavController
 import com.emreozcan.rickandmorty.theme.RickAndMortyTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,13 +25,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    Box {
-                        Text(
-                            modifier = Modifier.align(Alignment.Center),
-                            text = "Her şey eninde sonunda yoluna girecek Morty. Eğer girmezse, henüz sona gelmemişizdir.",
-                            textAlign = TextAlign.Center,
-                        )
-                    }
+                    RickAndMortyNavHost(navController = rememberNavController())
                 }
             }
         }
