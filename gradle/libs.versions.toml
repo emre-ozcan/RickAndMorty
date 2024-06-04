@@ -36,7 +36,10 @@ googleTruth = "1.1.4"
 #others
 kotlinCompilerExtensionVersion = "1.5.4"
 appcompat = "1.6.1"
-material = "1.10.0"
+material = "1.12.0"
+material3 = "1.2.1"
+coreVersion = "1.13.1"
+uiTextGoogleFonts = "1.6.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core" }
@@ -48,7 +51,7 @@ androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", versi
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
 androidx-compose-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "composeConstraintLayout" }
 
 androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
@@ -86,6 +89,8 @@ kotlin-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutine
 
 google-truth = { group = "com.google.truth", name = "truth", version.ref = "googleTruth" }
 javax-inject = { group = "javax.inject", name = "javax.inject", version = "1" }
+androidx-core = { group = "androidx.core", name = "core", version.ref = "coreVersion" }
+androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidApplication" }
