@@ -4,7 +4,6 @@ package com.emreozcan.rickandmorty.network
  * Created by @Emre Özcan on 4.06.2024
  */
 sealed class NetworkException(message: String, cause: Throwable) : Exception(message, cause) {
-
     data class UnauthorizedException(override val message: String, override val cause: Throwable) :
         NetworkException(message, cause)
 

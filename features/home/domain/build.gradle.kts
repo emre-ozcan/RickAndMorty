@@ -3,7 +3,10 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+dependencies {
+    implementation(projects.features.home.data)
+    implementation(projects.common.domain)
+    implementation(projects.common.utils)
+    implementation(projects.network)
+    implementation(libs.javax.inject)
 }
