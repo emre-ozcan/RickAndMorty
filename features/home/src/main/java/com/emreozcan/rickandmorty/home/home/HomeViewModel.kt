@@ -3,6 +3,7 @@ package com.emreozcan.rickandmorty.home.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.emreozcan.rickandmorty.common.domain.models.Resource
+import com.emreozcan.rickandmorty.common.domain.models.ResourceError
 import com.emreozcan.rickandmorty.home.domain.usecases.CharacterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,8 +20,8 @@ class HomeViewModel
     constructor(
         private val characterUseCase: CharacterUseCase,
     ) : ViewModel() {
-        private val _uiState = MutableStateFlow(HomeState())
-        val uiState: StateFlow<HomeState> = _uiState
+        private val _uiState = MutableStateFlow<HomeUiState>(HomeUiState.Success(emptyList()))
+        val uiState: StateFlow<HomeUiState> = _uiState
 
         init {
             getCharacters()
@@ -28,13 +29,22 @@ class HomeViewModel
 
         private fun getCharacters() =
             viewModelScope.launch {
+                _uiState.value = HomeUiState.Loading
                 when (val result = characterUseCase.invoke()) {
                     is Resource.Error -> {
-                        _uiState.value = HomeState(errorMessage = result.e.name)
+                        _uiState.value = HomeUiState.RequestError(message = getError(result))
                     }
                     is Resource.Success -> {
-                        _uiState.value = HomeState(characterList = result.result)
+                        _uiState.value = HomeUiState.Success(characterList = result.result)
                     }
                 }
             }
+
+        private fun getError(loginError: Resource.Error): String {
+            return when (loginError.e) {
+                ResourceError.UNAUTHORIZED -> "Unauthorized"
+                ResourceError.SERVICE_UNAVAILABLE -> "Service Unavailable"
+                ResourceError.UNKNOWN -> "An unknown error occurred"
+            }
+        }
     }
