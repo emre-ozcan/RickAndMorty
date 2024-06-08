@@ -36,7 +36,6 @@ fun HomeScreen(
     navigateToDetail: (String) -> Unit,
 ) {
     val state = viewModel.uiState.collectAsStateWithLifecycle().value
-
     Home(state = state, navigateToDetail = navigateToDetail)
 }
 

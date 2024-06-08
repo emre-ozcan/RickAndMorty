@@ -86,7 +86,7 @@ fun CharacterItem(
                         overflow = TextOverflow.Ellipsis,
                     )
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        StatusCircle(status = model.status)
+                        StatusCircle(status = model.status.ordinal)
                         Text(
                             modifier = Modifier.padding(start = 8.dp),
                             text = "${model.status.status} - ${model.gender.gender}",

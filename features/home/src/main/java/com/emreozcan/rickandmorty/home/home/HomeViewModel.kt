@@ -3,7 +3,7 @@ package com.emreozcan.rickandmorty.home.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.emreozcan.rickandmorty.common.domain.models.Resource
-import com.emreozcan.rickandmorty.common.domain.models.ResourceError
+import com.emreozcan.rickandmorty.common.domain.models.getError
 import com.emreozcan.rickandmorty.home.domain.usecases.CharacterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -39,12 +39,4 @@ class HomeViewModel
                     }
                 }
             }
-
-        private fun getError(loginError: Resource.Error): String {
-            return when (loginError.e) {
-                ResourceError.UNAUTHORIZED -> "Unauthorized"
-                ResourceError.SERVICE_UNAVAILABLE -> "Service Unavailable"
-                ResourceError.UNKNOWN -> "An unknown error occurred"
-            }
-        }
     }

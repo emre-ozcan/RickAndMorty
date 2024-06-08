@@ -1,5 +1,7 @@
 package com.emreozcan.rickandmorty.di
 
+import com.emreozcan.rickandmorty.detail.data.CharacterDetailRepository
+import com.emreozcan.rickandmorty.detail.data.CharacterDetailRepositoryImpl
 import com.emreozcan.rickandmorty.home.data.CharacterRepository
 import com.emreozcan.rickandmorty.home.data.CharacterRepositoryImpl
 import dagger.Module
@@ -15,4 +17,7 @@ import dagger.hilt.android.components.ViewModelComponent
 object RepositoryModule {
     @Provides
     fun provideCharacterRepository(impl: CharacterRepositoryImpl): CharacterRepository = impl
+
+    @Provides
+    fun provideCharacterDetailRepository(impl: CharacterDetailRepositoryImpl): CharacterDetailRepository = impl
 }

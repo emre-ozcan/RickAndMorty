@@ -17,6 +17,8 @@ dependencies {
     implementation(projects.theme)
     implementation(projects.features.home.domain)
     implementation(projects.common.domain)
+    implementation(projects.features.detail.data)
+    implementation(projects.features.detail.domain)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -28,6 +30,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.coil.compose)
 
     implementation(libs.androidx.compose.navigation)
     implementation(libs.androidx.hilt.compose.navigation)

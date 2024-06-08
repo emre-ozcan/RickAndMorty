@@ -7,13 +7,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.emreozcan.rickandmorty.home.domain.models.Status
 
 /**
  * Created by @Emre Özcan on 5.06.2024
  */
 @Composable
-fun StatusCircle(status: Status) {
+fun StatusCircle(status: Int) {
     Canvas(
         modifier = Modifier.size(10.dp),
         onDraw = {
@@ -26,16 +25,16 @@ fun StatusCircle(status: Status) {
 @Composable
 fun PreviewStatusCircleAlive() {
     Column {
-        StatusCircle(status = Status.ALIVE)
-        StatusCircle(status = Status.DEAD)
-        StatusCircle(status = Status.UNKNOWN)
+        StatusCircle(status = 0)
+        StatusCircle(status = 1)
+        StatusCircle(status = 2)
     }
 }
 
-private fun getCircleColor(status: Status): Color {
+private fun getCircleColor(status: Int): Color {
     return when (status) {
-        Status.ALIVE -> Color.Green
-        Status.DEAD -> Color.Red
-        Status.UNKNOWN -> Color.Gray
+        0 -> Color.Green
+        1 -> Color.Red
+        else -> Color.Gray
     }
 }

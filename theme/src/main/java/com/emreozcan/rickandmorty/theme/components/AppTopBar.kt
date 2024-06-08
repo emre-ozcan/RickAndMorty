@@ -19,7 +19,7 @@ fun AppTopBar(
     title: String,
     canNavigateBack: Boolean,
     navigateUp: () -> Unit = {},
-    actions: @Composable () -> Unit = {}
+    actions: @Composable () -> Unit = {},
 ) {
     if (canNavigateBack) {
         TopAppBar(
@@ -31,11 +31,11 @@ fun AppTopBar(
                 IconButton(onClick = navigateUp) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
-                        contentDescription = null
+                        contentDescription = null,
                     )
                 }
             },
-            modifier = modifier
+            modifier = modifier,
         )
     } else {
         TopAppBar(
@@ -43,7 +43,7 @@ fun AppTopBar(
                 Text(text = title)
             },
             actions = { actions() },
-            modifier = modifier
+            modifier = modifier,
         )
     }
 }
