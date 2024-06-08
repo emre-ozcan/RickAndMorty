@@ -41,6 +41,8 @@ dependencies {
     implementation(projects.network)
     implementation(projects.features.home)
     implementation(projects.features.home.data)
+    implementation(projects.features.detail)
+    implementation(projects.features.detail.data)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

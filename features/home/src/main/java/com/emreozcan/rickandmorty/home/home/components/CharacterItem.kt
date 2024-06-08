@@ -1,5 +1,6 @@
 package com.emreozcan.rickandmorty.home.home.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,9 +36,19 @@ import com.emreozcan.rickandmorty.theme.components.StatusCircle
  * Created by @Emre Özcan on 5.06.2024
  */
 @Composable
-fun CharacterItem(model: CharacterModel) {
+fun CharacterItem(
+    model: CharacterModel,
+    navigateToDetail: (String) -> Unit,
+) {
     model.status
-    Card(modifier = Modifier.padding(vertical = 6.dp, horizontal = 12.dp)) {
+    Card(
+        modifier =
+            Modifier
+                .padding(vertical = 6.dp, horizontal = 12.dp)
+                .clickable {
+                    navigateToDetail.invoke(model.id.toString())
+                },
+    ) {
         Row(
             modifier =
                 Modifier
@@ -119,7 +130,7 @@ fun CharacterItem(model: CharacterModel) {
 fun PreviewCharacterItem() {
     RickAndMortyTheme {
         Surface {
-            CharacterItem(model = getMockCharacterModel())
+            CharacterItem(model = getMockCharacterModel()) {}
         }
     }
 }

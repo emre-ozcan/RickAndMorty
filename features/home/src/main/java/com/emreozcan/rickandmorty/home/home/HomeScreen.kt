@@ -31,14 +31,20 @@ import com.emreozcan.rickandmorty.theme.components.RickAndMortyPreview
  * Created by @Emre Özcan on 4.06.2024
  */
 @Composable
-fun HomeScreen(viewModel: HomeViewModel) {
+fun HomeScreen(
+    viewModel: HomeViewModel,
+    navigateToDetail: (String) -> Unit,
+) {
     val state = viewModel.uiState.collectAsStateWithLifecycle().value
 
-    Home(state)
+    Home(state = state, navigateToDetail = navigateToDetail)
 }
 
 @Composable
-fun Home(state: HomeUiState) {
+private fun Home(
+    state: HomeUiState,
+    navigateToDetail: (String) -> Unit,
+) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -72,7 +78,7 @@ fun Home(state: HomeUiState) {
             is HomeUiState.Success -> {
                 LazyColumn(modifier = Modifier.fillMaxSize(), contentPadding = innerPadding) {
                     items(state.characterList) {
-                        CharacterItem(model = it)
+                        CharacterItem(model = it, navigateToDetail = navigateToDetail)
                     }
                 }
             }
@@ -84,7 +90,7 @@ fun Home(state: HomeUiState) {
 @Composable
 fun PreviewHomeScreenSuccess() {
     RickAndMortyTheme {
-        Home(HomeUiState.Success(listOf(getMockCharacterModel())))
+        Home(HomeUiState.Success(listOf(getMockCharacterModel()))) {}
     }
 }
 
@@ -92,7 +98,7 @@ fun PreviewHomeScreenSuccess() {
 @Composable
 fun PreviewHomeScreenLoading() {
     RickAndMortyTheme {
-        Home(HomeUiState.Loading)
+        Home(HomeUiState.Loading) {}
     }
 }
 
@@ -100,6 +106,6 @@ fun PreviewHomeScreenLoading() {
 @Composable
 fun PreviewHomeScreenError() {
     RickAndMortyTheme {
-        Home(HomeUiState.RequestError("An unknown error occurred"))
+        Home(HomeUiState.RequestError("An unknown error occurred")) {}
     }
 }

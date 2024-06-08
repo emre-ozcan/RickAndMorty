@@ -1,7 +1,6 @@
 package com.emreozcan.rickandmorty.home
 
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
@@ -17,10 +16,10 @@ sealed class HomeScreen(val route: String) {
     data object Home : HomeScreen("$HOME_ROUTE/home")
 }
 
-fun NavGraphBuilder.homeNavGraph(navController: NavController) {
+fun NavGraphBuilder.homeNavGraph(navigateToDetail: (String) -> Unit) {
     navigation(startDestination = HomeScreen.Home.route, route = HOME_ROUTE) {
         composable(HomeScreen.Home.route) {
-            HomeScreen(viewModel = hiltViewModel())
+            HomeScreen(viewModel = hiltViewModel(), navigateToDetail = navigateToDetail)
         }
     }
 }
